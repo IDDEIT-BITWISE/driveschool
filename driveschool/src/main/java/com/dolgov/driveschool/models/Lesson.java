@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "lesson")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -23,13 +23,14 @@ public class Lesson {
     @Column
     private LocalDate date;
 
+    @Column
+    private int price;
+
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @OneToOne
-    @JoinColumn(name = "car_id", referencedColumnName = "id")
-    private Car car;
+
 
     @ManyToOne
     @JoinColumn(name = "instructor_id")

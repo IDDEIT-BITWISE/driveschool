@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table
+@Table(name = "car")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -25,6 +25,6 @@ public class Car {
     private String name;
 
     @OneToOne(mappedBy = "car")
-    private Lesson lesson;
+    private Instructor instructor;
 
 }

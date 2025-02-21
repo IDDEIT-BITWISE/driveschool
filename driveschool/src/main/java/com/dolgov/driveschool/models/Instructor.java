@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "instructor")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -30,7 +30,8 @@ public class Instructor {
     @Column
     private String bio;
 
-    @OneToMany
-    @JoinColumn(name = "lesson_id")
-    private List<Lesson> lessons;
+    @OneToOne
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    private Car car;
+
 }

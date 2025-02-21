@@ -8,22 +8,24 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "student")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student implements UserDetails {
+public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
-    @Column(unique = true)
+    @Column
     private String username;
 
     @Column
@@ -32,27 +34,11 @@ public class Student implements UserDetails {
     @Column
     private int balance;
 
-    @Column
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar")
     private UserRole userRole;
 
-    @Column
-    @OneToMany
-    @JoinColumn(name="lesson_id")
-    private List<Lesson> lessons;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Lesson> lessons = new ArrayList<>();
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
-    public String getPassword() {
-        return "";
-    }
-
-    @Override
-    public String getUsername() {
-        return "";
-    }
 }
