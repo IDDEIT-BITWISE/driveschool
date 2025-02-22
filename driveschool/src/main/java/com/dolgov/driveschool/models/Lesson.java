@@ -1,15 +1,13 @@
 package com.dolgov.driveschool.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "lesson")
+@Table(name = "lessons")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -24,12 +22,18 @@ public class Lesson {
     private LocalDate date;
 
     @Column
+    private LocalTime startTime;
+
+    @Column
+    private LocalTime endTime;
+
+
+    @Column
     private int price;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
     @ManyToOne

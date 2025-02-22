@@ -5,20 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "student")
+@Table(name = "users")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +35,7 @@ public class Student {
     @Column(columnDefinition = "varchar")
     private UserRole userRole;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Lesson> lessons = new ArrayList<>();
 
 }
