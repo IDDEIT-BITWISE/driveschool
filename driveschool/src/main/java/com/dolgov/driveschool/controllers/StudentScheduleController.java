@@ -1,17 +1,18 @@
 package com.dolgov.driveschool.controllers;
 
+import com.dolgov.driveschool.dto.LessonDto;
 import com.dolgov.driveschool.models.Lesson;
 import com.dolgov.driveschool.services.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/student/schedule")
@@ -25,13 +26,16 @@ public class StudentScheduleController {
     }
 
     @GetMapping("/current-week")
-    public ResponseEntity<List<Lesson>> getCurrentWeekSchedule() {
+    public ResponseEntity<List<LessonDto>> getCurrentWeekSchedule() {
         LocalDate[] weekDates = lessonService.getCurrentWeekDates();
         LocalDate startOfWeek = weekDates[0];
         LocalDate endOfWeek = weekDates[1];
 
         List<Lesson> weeklySchedule = lessonService.getWeeklySchedule(startOfWeek, endOfWeek);
-        return ResponseEntity.ok(weeklySchedule);
+        List<LessonDto> lessonDtos = weeklySchedule.stream().
+                map(lessonService::lessonToDto).
+                collect(Collectors.toList());
+        return ResponseEntity.ok(lessonDtos);
 
 
     }
