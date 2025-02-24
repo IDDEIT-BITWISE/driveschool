@@ -1,10 +1,7 @@
 package com.dolgov.driveschool.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "cars")
@@ -12,6 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +22,5 @@ public class Car {
     @Column
     private String name;
 
-    @OneToOne(mappedBy = "car")
-    private Instructor instructor;
 
 }
