@@ -29,4 +29,14 @@ public class LessonService {
     public List<Lesson> getWeeklySchedule(LocalDate startDate, LocalDate endDate) {
         return lessonRepository.findByDateBetween(startDate, endDate);
     }
+
+    public List<Lesson> getLessonsByDate(LocalDate date) {
+        List<Lesson> lessons = lessonRepository.findAllByDate(date);
+        return lessons;
+    }
+
+    public LocalDate getToday() {
+        return LocalDate.now();
+    }
+
 }

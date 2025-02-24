@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

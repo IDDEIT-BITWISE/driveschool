@@ -6,9 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
     List<Lesson> findByDateBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Lesson> findAllByDate(LocalDate date);
 }
