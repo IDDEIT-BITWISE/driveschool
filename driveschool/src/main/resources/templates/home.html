@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автошкола Драйв</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Автошкола Драйв</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#about">О школе</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#courses">Курсы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Контакты</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Заголовок -->
+<header class="hero bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1>Добро пожаловать в автошколу Драйв!</h1>
+        <p>Обучение безопасному вождению в Иркутске.</p>
+        <a href="#courses" class="btn btn-light btn-lg">Хочу узнать больше</a>
+    </div>
+</header>
+
+<!-- О школе -->
+<section id="about" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2>О нашей автошколе</h2>
+        <p>Автошкола «Драйв» предлагает качественное обучение вождению с опытными инструкторами.</p>
+        <img src="img/img1.png" alt="Автошкола" class="img-fluid rounded-circle mb-4 h-50">
+    </div>
+</section>
+
+<!-- Курсы -->
+<section id="courses" class="py-5">
+    <div class="container text-center">
+        <h2>Наши курсы</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://source.unsplash.com/400x300/?car" class="card-img-top" alt="Курс для начинающих">
+                    <div class="card-body">
+                        <h5 class="card-title">Курс для начинающих</h5>
+                        <p class="card-text">Идеален для тех, кто впервые садится за руль.</p>
+                        <a href="#" class="btn btn-primary">Узнать больше</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://source.unsplash.com/400x300/?driving" class="card-img-top" alt="Курс повышения квалификации">
+                    <div class="card-body">
+                        <h5 class="card-title">Курс повышения квалификации</h5>
+                        <p class="card-text">Для водителей, желающих улучшить свои навыки.</p>
+                        <a href="#" class="btn btn-primary">Узнать больше</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://source.unsplash.com/400x300/?license" class="card-img-top" alt="Курс для получения прав категории B">
+                    <div class="card-body">
+                        <h5 class="card-title">Курс для категории B</h5>
+                        <p class="card-text">Подготовка к экзаменам и получение водительских прав.</p>
+                        <a href="#" class="btn btn-primary">Узнать больше</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contact" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2>Контакты</h2>
+        <p>Адрес: Карла Либкнехта 52, Иркутск</p>
+        <p>Email: info@drive-school.ru</p>
+        <p>Телефон: +7 (123) 456-78-90</p>
+        <p><i class="fas fa-map-marker-alt"></i> Мы находимся здесь!</p>
+    </div>
+</section>
+
+<!-- Подвал -->
+<footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2023 Автошкола Драйв. Все права защищены.</p>
+</footer>
+
+<!-- Скрипты -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+    background-color: #333; /* Цвет фона навигационной панели */
+    padding: 10px 20px;
+    position: sticky; /* Закрепляем навигацию в верхней части страницы */
+    top: 0; /* Прокрутка будет начинаться с верха */
+    z-index: 1000; /* Обеспечивает, что навигация будет поверх других элементов */
+}
+
+.navbar ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Используем flexbox для расположения элементов в ряд */
+}
+
+.navbar li {
+    margin: 0 15px; /* Отступы между элементами списка */
+}
+
+.navbar a {
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    padding: 10px 15px; /* Отступы вокруг текста */
+    border-radius: 5px; /* Скругление углов */
+    transition: background-color 0.3s, transform 0.3s; /* Анимации для фона и масштабирования */
+}
+
+.navbar a:hover {
+    background-color: #555; /* Цвет фона при наведении */
+    transform: scale(1.1); /* Увеличение при наведении */
+}
+
+.hero {
+    background: url('../img/bghome.png') no-repeat center center;
+    background-size: cover;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    position: relative;
+}
+
