@@ -20,4 +20,16 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/login")
+    public String login(){
+
+        return "login";
+    }
+
+    @GetMapping("/schedule")
+    public String schedule(){
+
+        return "schedule";
+    }
 }
