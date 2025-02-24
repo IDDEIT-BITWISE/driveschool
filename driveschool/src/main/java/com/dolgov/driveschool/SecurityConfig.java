@@ -13,15 +13,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(CsrfConfigurer::disable)
-                .authorizeHttpRequests(auth ->auth
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()
                         //.requestMatchers("/student/schedule").hasAnyAuthority("STUDENT_ROLE")
                         .requestMatchers("/admin/schedule").hasAnyAuthority("ADMIN_ROLE")
                         .anyRequest().authenticated()
                 )
-                ;
+        ;
 //                .formLogin(login -> login
 //                        .loginPage("/login")
 //                        .defaultSuccessUrl("/")

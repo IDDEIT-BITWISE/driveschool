@@ -5,6 +5,7 @@ import com.dolgov.driveschool.models.Lesson;
 import com.dolgov.driveschool.services.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class StudentScheduleController {
     }
 
     @GetMapping("/current-week")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<LessonDto>> getCurrentWeekSchedule() {
         LocalDate[] weekDates = lessonService.getCurrentWeekDates();
         LocalDate startOfWeek = weekDates[0];

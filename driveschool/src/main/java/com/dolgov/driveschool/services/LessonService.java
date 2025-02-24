@@ -1,6 +1,5 @@
 package com.dolgov.driveschool.services;
 
-import com.dolgov.driveschool.dto.InstructorDto;
 import com.dolgov.driveschool.dto.LessonDto;
 import com.dolgov.driveschool.models.Lesson;
 import com.dolgov.driveschool.repositories.LessonRepository;
