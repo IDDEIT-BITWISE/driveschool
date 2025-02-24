@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@RequestMapping("/student/schedule")
+@RequestMapping("/schedule/")
 @Controller
 //@PreAuthorize("STUDENT_ROLE")
 public class StudentScheduleController {
@@ -34,6 +34,15 @@ public class StudentScheduleController {
         List<Lesson> weeklySchedule = lessonService.getWeeklySchedule(startOfWeek, endOfWeek);
         model.addAttribute(weeklySchedule);
         return "schedule";
+    }
+
+    @GetMapping("/{date}")
+    public String getLessonByDay(@PathVariable("date") LocalDate date, Model model) {
+        List<Lesson> lessons = lessonService.getLessonsByDate(date);
+        model.addAttribute(lessons);
+        System.out.println("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААА");
+        System.out.println(lessons);
+        return "scheduleStudent";
     }
 
 

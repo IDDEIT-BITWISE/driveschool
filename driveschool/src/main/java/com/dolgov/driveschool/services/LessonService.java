@@ -34,4 +34,9 @@ public class LessonService {
         List<Lesson> lessons = lessonRepository.findAllByDate(date);
         return lessons;
     }
+
+    public LocalDate getToday() {
+        return LocalDate.now();
+    }
+
 }

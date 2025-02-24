@@ -34,12 +34,5 @@ public class HomeController {
 
         return "home";
     }
-    @GetMapping("/{date}")
-    public String getLessonByDay(@PathVariable("date") LocalDate date, Model model) {
-        List<Lesson> lessons = lessonService.getLessonsByDate(date);
-        //model.addAttribute(lessons);
-        System.out.println("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААА");
-        System.out.println(lessons);
-        return "/";
-    }
+
 }
