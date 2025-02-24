@@ -22,15 +22,15 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 ;
-//                .formLogin(login -> login
-//                        .loginPage("/login")
+//                .formLogin(login.html -> login.html
+//                        .loginPage("/login.html")
 //                        .defaultSuccessUrl("/")
-//                        .failureUrl("/login?error=true")
+//                        .failureUrl("/login.html?error=true")
 //                        .usernameParameter("email")
 //                        .permitAll())
 //                .logout(logout -> logout
 //                        .logoutUrl("/logout")
-//                        .logoutSuccessUrl("/login?logout=true")
+//                        .logoutSuccessUrl("/login.html?logout=true")
 //                        .deleteCookies("JSESSIONID"));
         return http.build();
     }
