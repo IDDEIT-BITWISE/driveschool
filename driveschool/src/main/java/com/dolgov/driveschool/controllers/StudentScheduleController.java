@@ -36,13 +36,13 @@ public class StudentScheduleController {
     }
 
     @GetMapping("/")
-    public String getLessonsToday(Model model) {
+    public String getLessonsToday(@RequestParam Long instructorId,Model model) {
         LocalDate today = lessonService.getToday();
         List<Lesson> lessons = lessonService.getLessonsByDate(today);
         model.addAttribute("lessons", lessons);
         model.addAttribute("lesson", new Lesson());
         //System.out.printf("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААААААА");
-        //System.out.println(lessons);
+        //System.out.println(instructorId);
         return "schedule";
     }
 }

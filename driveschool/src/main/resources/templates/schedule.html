@@ -38,15 +38,17 @@
 
 <div class="container schedule-wrapper mt-5">
     <h1 class="text-center">Расписание на день</h1>
-
-    <div class="text-center mb-4">
-        <label for="datePicker">Выберите дату:</label>
-        <input type="date" id="datePicker" class="form-control w-50 mx-auto" />
-        <select class="form-select" id="instructor" name="instructor">
-            <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.secondName}"></option>
-        </select>
-    </div>
-
+    <form id="lessons_form" th:action="@{/getSchedule}" method="POST">
+        <div class="text-center mb-4 form-group">
+            <label for="datePicker">Выберите дату:</label>
+            <input type="date" name="datePicker" id="datePicker" th:value="${datePicker}" class="form-control w-50 mx-auto" />
+            <label for="instructor" class="mt-2">Выберите инструктора</label>
+            <select class="form-select form-control w-50 mx-auto " id="instructor" name="instructorId">
+                <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.secondName}"></option>
+            </select>
+            <button type="submit" class="btn btn-primary mt-2">Показать занятия</button>
+        </div>
+    </form>
 
 
     <div class="row">

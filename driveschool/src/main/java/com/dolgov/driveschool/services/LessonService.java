@@ -51,4 +51,9 @@ public class LessonService {
         return lessonRepository.findAllByInstructorId(id);
     }
 
+    public List<Lesson> getAllByInstructorAndDate(Long instructorId, LocalDate date) {
+        return lessonRepository.findAllByDateAndInstructorId(instructorId, date);
+    }
+
+
 }
