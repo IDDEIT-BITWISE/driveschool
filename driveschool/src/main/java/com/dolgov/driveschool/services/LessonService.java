@@ -39,4 +39,8 @@ public class LessonService {
         return LocalDate.now();
     }
 
+    public LocalDate nextDay(LocalDate date) {
+        return date.plusDays(1);
+    }
+
 }
