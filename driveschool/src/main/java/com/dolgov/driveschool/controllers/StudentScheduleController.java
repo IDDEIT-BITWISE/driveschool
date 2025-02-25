@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@RequestMapping("/schedule/")
+@RequestMapping("/schedule ")
 @Controller
 //@PreAuthorize("STUDENT_ROLE")
 public class StudentScheduleController {
@@ -25,31 +25,24 @@ public class StudentScheduleController {
         this.lessonService = lessonService;
     }
 
-    @GetMapping("/current-week")
-    public String getCurrentWeekSchedule(Model model, Authentication authentication) {
-        LocalDate[] weekDates = lessonService.getCurrentWeekDates();
-        LocalDate startOfWeek = weekDates[0];
-        LocalDate endOfWeek = weekDates[1];
-
-        List<Lesson> weeklySchedule = lessonService.getWeeklySchedule(startOfWeek, endOfWeek);
-        model.addAttribute(weeklySchedule);
-        return "schedule";
-    }
-
     @GetMapping("/{date}")
     public String getLessonByDay(@PathVariable("date") LocalDate date, Model model) {
         List<Lesson> lessons = lessonService.getLessonsByDate(date);
-        model.addAttribute(lessons);
-        System.out.println("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААА");
-        System.out.println(lessons);
-        return "scheduleStudent";
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("lesson", new Lesson());
+        System.out.println("getMapping /date");
+        //System.out.println(lessons);
+        return "schedule";
     }
 
-
-
-
-
-
-
-
+    @GetMapping("/")
+    public String getLessonsToday(Model model) {
+        LocalDate today = lessonService.getToday();
+        List<Lesson> lessons = lessonService.getLessonsByDate(today);
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("lesson", new Lesson());
+        //System.out.printf("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААААААА");
+        //System.out.println(lessons);
+        return "schedule";
+    }
 }

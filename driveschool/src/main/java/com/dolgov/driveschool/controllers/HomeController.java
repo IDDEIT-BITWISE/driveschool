@@ -1,5 +1,9 @@
 package com.dolgov.driveschool.controllers;
 
+import com.dolgov.driveschool.models.Instructor;
+import com.dolgov.driveschool.models.Lesson;
+import com.dolgov.driveschool.services.InstructorService;
+import com.dolgov.driveschool.services.LessonService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +17,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Controller
 public class HomeController {
+    private final LessonService lessonService;
+    private final InstructorService instructorService;
+
+    @Autowired
+    public HomeController(LessonService lessonService, InstructorService instructorService) {
+        this.lessonService = lessonService;
+        this.instructorService = instructorService;
+    }
+
     @GetMapping("/")
     public String index(){
 
@@ -27,9 +43,20 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping("/schedule")
-    public String schedule(){
 
+
+
+    @GetMapping("/schedule")
+    public String getLessonsToday(Model model) {
+        LocalDate today = lessonService.getToday();
+        List<Lesson> lessons = lessonService.getLessonsByDate(today.minusDays(1));
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("lesson", new Lesson());
+
+        model.addAttribute("instructors", instructorService.getAll());
+        model.addAttribute("instructor", new Instructor());
+        System.out.printf("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААААААА");
+        System.out.println(lessons);
         return "schedule";
     }
 }

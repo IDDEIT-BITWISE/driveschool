@@ -47,4 +47,8 @@ public class LessonService {
         return lessonRepository.findAllByUserId(id);
     }
 
+    public List<Lesson> getAllByInstructorId(Long id) {
+        return lessonRepository.findAllByInstructorId(id);
+    }
+
 }

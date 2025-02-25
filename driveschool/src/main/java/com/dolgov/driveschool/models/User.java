@@ -1,10 +1,7 @@
 package com.dolgov.driveschool.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,7 +35,7 @@ public class User implements UserDetails {
     @Column(columnDefinition = "varchar")
     private UserRole userRole;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
     private List<Lesson> lessons = new ArrayList<>();
 
     @Override
