@@ -39,7 +39,6 @@
 <div class="container schedule-wrapper mt-5">
     <h1 class="text-center">Расписание на день</h1>
 
-    <!-- Форма выбора даты -->
     <div class="text-center mb-4">
         <label for="datePicker">Выберите дату:</label>
         <input type="date" id="datePicker" class="form-control w-50 mx-auto" />
@@ -47,45 +46,29 @@
 
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="schedule-column">
+            <div class="schedule-column" th:each="lesson : ${lessons}">
                 <h4>Расписание на <span id="selectedDate">15 марта</span></h4>
                 <div class="task">
-                    <strong>09:00 - 11:00</strong>
-                    <p>Мотошкин. Вождение.</p>
-                    <button class="btn btn-book">Записаться</button>
-                </div>
-                <div class="task">
-                    <strong>11:00 - 13:00</strong>
-                    <p>Мотошкин. Вождение.</p>
-                    <button class="btn btn-book">Записаться</button>
-                </div>
-                <div class="task">
-                    <strong>13:00 - 15:00</strong>
-                    <p>Мотошкин. Вождение.</p>
-                    <button class="btn btn-book">Записаться</button>
-                </div>
-                <div class="task">
-                    <strong>15:00 - 17:00</strong>
-                    <p>Мотошкин. Вождение.</p>
-                    <button class="btn btn-book">Записаться</button>
-                </div>
-                <div class="task">
-                    <strong>17:00 - 19:00</strong>
-                    <p>Мотошкин. Вождение.</p>
-                    <button class="btn btn-book">Записаться</button>
+                    <strong th:text="${lesson.time}"></strong>
+                    <p th:text="${lesson.instructor}"></p>
+                    <p th:if="${lesson.user}">Занято</p>
+                    <button th:if="${(!lesson.user)}"
+                            class="btn btn-book"
+                            th:href="@{/schedule/{date}/signup/{id}(id=${lesson.id}, date=${lesson.date})}">Записаться</button>
+                    <button th:if="${userLessonsList.contains(lesson.id)}"
+                            class="btn btn-secondary"
+                            th:href="@{/schedule/{date}/signout/{id}(id=${lesson.id}, date=${lesson.date})}">Отменить запись</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Скрипты -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-    // Обновление выбранной даты
     document.getElementById('datePicker').addEventListener('change', function() {
         const selectedDate = new Date(this.value);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
