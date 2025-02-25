@@ -23,11 +23,7 @@ public class Lesson {
     private LocalDate date;
 
     @Column
-    private LocalTime startTime;
-
-    @Column
-    private LocalTime endTime;
-
+    private LocalTime time;
 
     @Column
     private int price;
