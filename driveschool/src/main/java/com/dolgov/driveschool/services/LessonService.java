@@ -43,4 +43,8 @@ public class LessonService {
         return date.plusDays(1);
     }
 
+    public List<Lesson> getAllByUserId(Long id) {
+        return lessonRepository.findAllByUserId(id);
+    }
+
 }
