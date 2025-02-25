@@ -23,12 +23,12 @@ INSERT INTO users (username, password, balance, user_role) VALUES
 ('admin', '{noop}123', 3000, 'ADMIN_ROLE');
 
 -- Вставка данных в таблицу lessons
-INSERT INTO lessons (date, start_time, price, instructor_id, user_id) VALUES
+INSERT INTO lessons (date, time, price, instructor_id, user_id) VALUES
 ('2023-10-02', '10:00', 1000, 1, 1),  -- Занятие 1, записан student1
 ('2023-10-02', '12:00', 1000, 2, NULL), -- Занятие 2, свободно
 ('2023-10-03', '14:00', 1000, 3, 2),  -- Занятие 3, записан student2
 ('2023-10-24', '16:00', 1000, 4, NULL), -- Занятие 4, свободно
 ('2023-10-05', '18:00', 1000, 5, 3),
 ('2025-02-17', '18:00', 1000, 4, 3),
-('2025-02-24', '18:00' 1000, 5, 1),
-('2025-02-24', '18:00' 1000, 1, 1);
+('2025-02-24', '18:00', 1000, 5, 1),
+('2025-02-24', '18:00', 1000, 1, 1);
