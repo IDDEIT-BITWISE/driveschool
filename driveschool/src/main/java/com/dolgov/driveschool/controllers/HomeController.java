@@ -42,6 +42,12 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/schedule")
+    public String getSchedule(){
+        LocalDate today = lessonService.getToday();
+
+        return "redirect:/schedule/1/"+today.toString();
+    }
 
     @PostMapping("/getSchedule")
     public String getLessons(@RequestParam Long instructorId, @RequestParam LocalDate datePicker) {
