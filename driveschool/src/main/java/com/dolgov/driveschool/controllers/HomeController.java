@@ -65,6 +65,7 @@ public class HomeController {
 
         model.addAttribute("instructors", instructorService.getAll());
         model.addAttribute("instructor", new Instructor());
+        model.addAttribute("datePicker",date);
 
 
         //System.out.printf("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААААААА");
