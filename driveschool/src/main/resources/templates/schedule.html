@@ -44,7 +44,7 @@
             <input type="date" name="datePicker" id="datePicker" th:value="${datePicker}" class="form-control w-50 mx-auto" />
             <label for="instructor" class="mt-2">Выберите инструктора</label>
             <select class="form-select form-control w-50 mx-auto " id="instructor" name="instructorId">
-                <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.secondName}"></option>
+                <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.secondName}" th:selected="${currentInstructor.id==instructor.id}"></option>
             </select>
             <button type="submit" class="btn btn-primary mt-2">Показать занятия</button>
         </div>
@@ -58,9 +58,9 @@
                     <strong th:text="${lesson.time}"></strong>
                     <p th:text="${lesson.instructor.secondName}"></p>
                     <p th:if="${lesson.user}">Занято</p>
-<!--                    <button th:if="${(!lesson.user)}"-->
-<!--                            class="btn btn-book"-->
-<!--                            th:href="@{/schedule/{date}/signup/{id}(id=${lesson.id}, date=${lesson.date})}">Записаться</button>-->
+                    <a th:if="${(lesson.user==null)}"
+                            class="btn btn-book"
+                            th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
 <!--                    <button th:if="${userLessonsList.contains(lesson.id)}"-->
 <!--                            class="btn btn-secondary"-->
 <!--                            th:href="@{/schedule/{date}/signout/{id}(id=${lesson.id}, date=${lesson.date})}">Отменить запись</button>-->

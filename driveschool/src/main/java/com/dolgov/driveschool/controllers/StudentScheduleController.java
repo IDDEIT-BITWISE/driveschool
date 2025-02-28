@@ -1,6 +1,8 @@
 package com.dolgov.driveschool.controllers;
 
+import com.dolgov.driveschool.models.Instructor;
 import com.dolgov.driveschool.models.Lesson;
+import com.dolgov.driveschool.services.InstructorService;
 import com.dolgov.driveschool.services.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
@@ -19,30 +21,13 @@ import java.util.List;
 //@PreAuthorize("STUDENT_ROLE")
 public class StudentScheduleController {
     private final LessonService lessonService;
+    private final InstructorService instructorService;
 
     @Autowired
-    public StudentScheduleController(LessonService lessonService) {
+    public StudentScheduleController(LessonService lessonService, InstructorService instructorService) {
         this.lessonService = lessonService;
+        this.instructorService = instructorService;
     }
 
-    @GetMapping("/{date}")
-    public String getLessonByDay(@PathVariable("date") LocalDate date, Model model) {
-        List<Lesson> lessons = lessonService.getLessonsByDate(date);
-        model.addAttribute("lessons", lessons);
-        model.addAttribute("lesson", new Lesson());
-        System.out.println("getMapping /date");
-        //System.out.println(lessons);
-        return "schedule";
-    }
 
-    @GetMapping("/")
-    public String getLessonsToday(@RequestParam Long instructorId,Model model) {
-        LocalDate today = lessonService.getToday();
-        List<Lesson> lessons = lessonService.getLessonsByDate(today);
-        model.addAttribute("lessons", lessons);
-        model.addAttribute("lesson", new Lesson());
-        //System.out.printf("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААААААА");
-        //System.out.println(instructorId);
-        return "schedule";
-    }
 }

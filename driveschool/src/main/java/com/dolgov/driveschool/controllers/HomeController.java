@@ -58,6 +58,7 @@ public class HomeController {
 
     @GetMapping("/schedule/{instructorId}/{date}")
     public String getLessonsToday(@PathVariable("instructorId") Long instructorId,@PathVariable("date") LocalDate date, Model model) {
+        Instructor currentInstructor = instructorService.getInstructorById(instructorId);
 
         List<Lesson> lessons = lessonService.getAllByInstructorAndDate(instructorId, date);
         model.addAttribute("lessons", lessons);
@@ -65,14 +66,16 @@ public class HomeController {
 
         model.addAttribute("instructors", instructorService.getAll());
         model.addAttribute("instructor", new Instructor());
+        model.addAttribute("currentInstructor", currentInstructor);
         model.addAttribute("datePicker",date);
-
-
-        //System.out.printf("ПИЗДААААААААААААААААААААААААААААААААААААААААААААААААААА");
-        //System.out.println(lessons);
 
         return "schedule";
     }
 
+    @GetMapping("/schedule/signup/{id}")
+    public String signUpLesson(@PathVariable("id") Long id) {
+
+        return "home";
+    }
 
 }
