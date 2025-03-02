@@ -16,22 +16,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth ->auth
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/login", "/register").permitAll()
                         //.requestMatchers("/student/schedule").hasAnyAuthority("STUDENT_ROLE")
-                        .requestMatchers("/admin/schedule").hasAnyAuthority("ADMIN_ROLE")
+                        .requestMatchers("/schedule").hasAnyAuthority("ADMIN_ROLE", "STUDENT_ROLE")
                         .anyRequest().authenticated()
                 )
-                ;
-//                .formLogin(login.html -> login.html
-//                        .loginPage("/login.html")
-//                        .defaultSuccessUrl("/")
-//                        .failureUrl("/login.html?error=true")
-//                        .usernameParameter("email")
-//                        .permitAll())
-//                .logout(logout -> logout
-//                        .logoutUrl("/logout")
-//                        .logoutSuccessUrl("/login.html?logout=true")
-//                        .deleteCookies("JSESSIONID"));
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error=true")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout=true")
+                        .deleteCookies("JSESSIONID"));
         return http.build();
     }
 }
