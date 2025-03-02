@@ -111,11 +111,18 @@ public class HomeController {
     }
 
     @GetMapping("/schedule/signout/{id}")
-    public String signOutLesson(@PathVariable("id") Long lessonId, Authentication authentication) {
+    public String signOutLesson(
+            @PathVariable("id") Long lessonId,
+            Authentication authentication
+    ) {
+        Lesson lesson = lessonService.getById(lessonId);
+
+        if (lesson.getDate().isEqual(LocalDate.now())) {
+            return "redirect:/schedule/" + lesson.getInstructor().getId() + "/" + lesson.getDate() + "?error=today";
+        }
 
         lessonService.signOutLesson(lessonId);
 
-        Lesson lesson = lessonService.getById(lessonId);
         Long instructorId = lesson.getInstructor().getId();
         LocalDate date = lesson.getDate();
 

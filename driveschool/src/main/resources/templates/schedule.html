@@ -39,9 +39,9 @@
                     <a th:if="${(lesson.user==null)}"
                             class="btn btn-book"
                             th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
-                    <a th:if="${(lesson.user!=null)&&(#authentication.name==lesson.user.username)}"
-                            class="btn btn-secondary"
-                            th:href="@{/schedule/signout/{id}(id=${lesson.id})}">Отменить запись</a>
+                    <a th:if="${(lesson.user!=null) && (#authentication.name==lesson.user.username) && (lesson.date != T(java.time.LocalDate).now())}"
+                       class="btn btn-secondary"
+                       th:href="@{/schedule/signout/{id}(id=${lesson.id})}">Отменить запись</a>
                 </div>
             </div>
         </div>
