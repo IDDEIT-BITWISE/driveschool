@@ -129,4 +129,17 @@ h2.text {
         .btn-book:hover {
             background-color: #218838;
         }
+        .course-card {
+                    transition: transform 0.3s;
+                    border: none;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                }
+                .course-card:hover {
+                    transform: translateY(-5px);
+                }
+                .icon-container {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 15px;
+                }
 
