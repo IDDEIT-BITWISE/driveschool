@@ -2,8 +2,10 @@ package com.dolgov.driveschool.controllers;
 
 import com.dolgov.driveschool.models.Instructor;
 import com.dolgov.driveschool.models.Lesson;
+import com.dolgov.driveschool.models.User;
 import com.dolgov.driveschool.services.InstructorService;
 import com.dolgov.driveschool.services.LessonService;
+import com.dolgov.driveschool.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,13 @@ import java.util.List;
 public class HomeController {
     private final LessonService lessonService;
     private final InstructorService instructorService;
+    private final UserService userService;
 
     @Autowired
-    public HomeController(LessonService lessonService, InstructorService instructorService) {
+    public HomeController(LessonService lessonService, InstructorService instructorService, UserService userService) {
         this.lessonService = lessonService;
         this.instructorService = instructorService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -84,8 +88,11 @@ public class HomeController {
     }
 
     @GetMapping("/schedule/signup/{id}")
-    public String signUpLesson(@PathVariable("id") Long id) {
-
+    public String signUpLesson(@PathVariable("id") Long lessonId, Authentication authentication) {
+        String username = authentication.getName();
+        User user = userService.getUserByName(username);
+        Long userId = user.getId();
+        lessonService.joinLesson(userId, lessonId);
         return "home";
     }
 

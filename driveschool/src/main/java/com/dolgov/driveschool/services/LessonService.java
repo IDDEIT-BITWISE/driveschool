@@ -1,7 +1,9 @@
 package com.dolgov.driveschool.services;
 
 import com.dolgov.driveschool.models.Lesson;
+import com.dolgov.driveschool.models.User;
 import com.dolgov.driveschool.repositories.LessonRepository;
+import com.dolgov.driveschool.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,12 @@ import java.util.List;
 @Service
 public class LessonService {
     private final LessonRepository lessonRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public LessonService(LessonRepository lessonRepository) {
+    public LessonService(LessonRepository lessonRepository, UserService userService, UserRepository userRepository) {
         this.lessonRepository = lessonRepository;
+        this.userRepository = userRepository;
     }
 
     public LocalDate[] getCurrentWeekDates() {
@@ -54,6 +58,20 @@ public class LessonService {
     public List<Lesson> getAllByInstructorAndDate(Long instructorId, LocalDate date) {
         return lessonRepository.findAllByDateAndInstructorId(instructorId, date);
     }
+
+    public void joinLesson(Long userId, Long lessonId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("user not found"));
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new RuntimeException("lesson not found"));
+        if (lesson.getUser() != null) {
+            throw new RuntimeException("lesson has user");
+        }
+        lesson.setUser(user);
+
+        lessonRepository.save(lesson);
+    }
+
 
 
 }

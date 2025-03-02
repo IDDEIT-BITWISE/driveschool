@@ -26,6 +26,11 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    public User getUserByName(String name){
+        return userRepository.findByUsername(name)
+                .orElseThrow(() -> new RuntimeException("user not found"));
+    }
+
     @Transactional
     public void save(User user) {
         user.setUserRole(UserRole.STUDENT_ROLE);
