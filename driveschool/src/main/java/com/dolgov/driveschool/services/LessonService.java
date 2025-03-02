@@ -72,6 +72,11 @@ public class LessonService {
         lessonRepository.save(lesson);
     }
 
+    public Lesson getById(Long id) {
+        return lessonRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("lesson not found"));
+    }
+
 
 
 }

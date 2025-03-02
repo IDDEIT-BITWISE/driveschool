@@ -31,11 +31,12 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new RuntimeException("user not found"));
     }
 
-    @Transactional
     public void save(User user) {
         user.setUserRole(UserRole.STUDENT_ROLE);
         user.setPassword("{noop}"+user.getPassword());
         userRepository.save(user);
     }
+
+
 
 }

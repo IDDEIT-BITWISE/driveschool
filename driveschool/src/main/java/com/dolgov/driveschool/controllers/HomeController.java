@@ -98,7 +98,11 @@ public class HomeController {
         User user = userService.getUserByName(username);
         Long userId = user.getId();
         lessonService.joinLesson(userId, lessonId);
-        return "home";
+        Lesson lesson = lessonService.getById(lessonId);
+        Long instructorId = lesson.getInstructor().getId();
+        LocalDate date = lesson.getDate();
+
+        return "redirect:/schedule/" + instructorId + "/" + date;
     }
 
     @GetMapping(value = "/register")
