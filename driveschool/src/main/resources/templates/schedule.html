@@ -39,9 +39,9 @@
                     <a th:if="${(lesson.user==null)}"
                             class="btn btn-book"
                             th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
-<!--                    <button th:if="${userLessonsList.contains(lesson.id)}"-->
-<!--                            class="btn btn-secondary"-->
-<!--                            th:href="@{/schedule/{date}/signout/{id}(id=${lesson.id}, date=${lesson.date})}">Отменить запись</button>-->
+                    <button th:if="${(lesson.user!=null)&&(#authentication.name==lesson.user.username)}"
+                            class="btn btn-secondary"
+                            th:href="@{/schedule/{date}/signout/{id}(id=${lesson.id}, date=${lesson.date})}">Отменить запись</button>
                 </div>
             </div>
         </div>
