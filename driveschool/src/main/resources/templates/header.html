@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
   <meta charset="UTF-8">
   <title>Header</title>
@@ -22,10 +24,15 @@
         <a class="nav-link" href="#contact">Контакты</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/schedule">Расписание</a>
+        <a class="nav-link" href="/getSchedule">Расписание</a>
       </li>
-      <li class="nav-item">
+      <li sec:authorize="!isAuthenticated()" class="nav-item">
         <a class="nav-link" href="/login">Войти</a>
+      </li>
+      <li sec:authorize="isAuthenticated()" class="nav-item">
+        <a class="nav-link" href="/logout"
+        >Выйти (<span sec:authentication="name">UUser</span>)</a
+        >
       </li>
     </ul>
   </div>

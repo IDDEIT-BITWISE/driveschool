@@ -16,7 +16,7 @@
 
 <div class="container schedule-wrapper mt-5">
     <h1 class="text-center">Расписание на день</h1>
-    <form id="lessons_form" th:action="@{/getSchedule}" method="POST">
+    <form id="lessons_form" th:action="@{/getSchedule}">
         <div class="text-center mb-4 form-group">
             <label for="datePicker">Выберите дату:</label>
             <input type="date" name="datePicker" id="datePicker" th:value="${datePicker}" class="form-control w-50 mx-auto" />
@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="schedule-column" th:each="lesson : ${lessons}">
-                <div th:if="${}" class="task">
+                <div class="task">
                     <strong th:text="${lesson.time}"></strong>
                     <p th:text="${lesson.instructor.secondName}"></p>
                     <p th:if="${lesson.user}">Занято</p>

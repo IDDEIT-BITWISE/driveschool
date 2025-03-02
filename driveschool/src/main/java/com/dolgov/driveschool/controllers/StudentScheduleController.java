@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@RequestMapping("/schedule ")
+@RequestMapping("/schedule")
 @Controller
 //@PreAuthorize("STUDENT_ROLE")
 public class StudentScheduleController {
