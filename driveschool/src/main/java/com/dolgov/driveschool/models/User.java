@@ -31,6 +31,15 @@ public class User implements UserDetails {
     @Column
     private int balance;
 
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private String email;
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar")
     private UserRole userRole;
