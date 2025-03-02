@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -45,14 +47,12 @@ public class HomeController {
     @GetMapping("/schedule")
     public String getSchedule(){
         LocalDate today = lessonService.getToday();
-
         return "redirect:/schedule/1/"+today.toString();
     }
 
     @PostMapping("/getSchedule")
     public String getLessons(@RequestParam Long instructorId, @RequestParam LocalDate datePicker) {
         String resRedir = "redirect:/schedule/"+instructorId.toString() + "/" + datePicker.toString();
-        System.out.println(resRedir);
         return resRedir;
     }
 

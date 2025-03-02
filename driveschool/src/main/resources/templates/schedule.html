@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="schedule-column" th:each="lesson : ${lessons}">
-                <div class="task">
+                <div th:if="${}" class="task">
                     <strong th:text="${lesson.time}"></strong>
                     <p th:text="${lesson.instructor.secondName}"></p>
                     <p th:if="${lesson.user}">Занято</p>
