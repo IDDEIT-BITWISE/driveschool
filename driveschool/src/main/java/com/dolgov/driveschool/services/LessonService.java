@@ -77,6 +77,17 @@ public class LessonService {
                 .orElseThrow(() -> new RuntimeException("lesson not found"));
     }
 
+    public void signOutLesson(Long lessonId) {
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("user not found"));
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new RuntimeException("lesson not found"));
+        lesson.setUser(null);
+
+        lessonRepository.save(lesson);
+
+    }
+
 
 
 }
