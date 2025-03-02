@@ -44,6 +44,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/courses")
+    public String courses(){
+        return "courses";
+    }
+
     @GetMapping("/schedule")
     public String getSchedule(){
         LocalDate today = lessonService.getToday();
