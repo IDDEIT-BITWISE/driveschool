@@ -7,6 +7,7 @@ import com.dolgov.driveschool.services.LessonService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
@@ -54,9 +55,15 @@ public class HomeController {
         return "redirect:/schedule/1/"+today.toString();
     }
 
-    @PostMapping("/getSchedule")
-    public String getLessons(@RequestParam Long instructorId, @RequestParam LocalDate datePicker) {
-        String resRedir = "redirect:/schedule/"+instructorId.toString() + "/" + datePicker.toString();
+    @GetMapping("/getSchedule")
+    public String getLessons(
+            @RequestParam(required = false, defaultValue = "1") Long instructorId,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate datePicker
+    ) {
+        if (datePicker == null) {
+            datePicker = LocalDate.now();
+        }
+        String resRedir = "redirect:/schedule/" + instructorId + "/" + datePicker;
         return resRedir;
     }
 
