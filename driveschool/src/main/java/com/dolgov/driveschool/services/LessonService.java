@@ -88,6 +88,11 @@ public class LessonService {
 
     }
 
+    public void deleteLesson(Lesson lesson) {
+        lessonRepository.delete(lesson);
+
+    }
+
 
 
 }

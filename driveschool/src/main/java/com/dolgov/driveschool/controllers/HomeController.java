@@ -3,6 +3,7 @@ package com.dolgov.driveschool.controllers;
 import com.dolgov.driveschool.models.Instructor;
 import com.dolgov.driveschool.models.Lesson;
 import com.dolgov.driveschool.models.User;
+import com.dolgov.driveschool.models.UserRole;
 import com.dolgov.driveschool.services.InstructorService;
 import com.dolgov.driveschool.services.LessonService;
 import com.dolgov.driveschool.services.UserService;
@@ -77,7 +78,7 @@ public class HomeController {
     }
 
     @GetMapping("/schedule/{instructorId}/{date}")
-    public String getLessonsToday(@PathVariable("instructorId") Long instructorId,@PathVariable("date") LocalDate date, Model model) {
+    public String getLessonsToday(@PathVariable("instructorId") Long instructorId,@PathVariable("date") LocalDate date, Model model, Authentication authentication) {
         Instructor currentInstructor = instructorService.getInstructorById(instructorId);
 
         List<Lesson> lessons = lessonService.getAllByInstructorAndDate(instructorId, date);
@@ -88,7 +89,7 @@ public class HomeController {
         model.addAttribute("instructor", new Instructor());
         model.addAttribute("currentInstructor", currentInstructor);
         model.addAttribute("datePicker",date);
-
+        System.out.println(authentication.getAuthorities());
         return "schedule";
     }
 
@@ -129,6 +130,12 @@ public class HomeController {
         return "redirect:/schedule/" + instructorId + "/" + date;
     }
 
-
-
+    @GetMapping("/schedule/delete/{id}")
+    public String deleteLesson(@PathVariable("id") Long id, Authentication authentication) {
+        Lesson lesson = lessonService.getById(id);
+        lessonService.deleteLesson(lesson);
+        Long instructorId = lesson.getInstructor().getId();
+        LocalDate date = lesson.getDate();
+        return "redirect:/schedule/"+instructorId+"/"+date;
+    }
 }
