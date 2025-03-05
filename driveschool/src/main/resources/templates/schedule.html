@@ -25,9 +25,11 @@
                 <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.secondName}" th:selected="${currentInstructor.id==instructor.id}"></option>
             </select>
             <button type="submit" class="btn btn-primary mt-2">Показать занятия</button>
-            <a sec:authorize="hasAuthority('ADMIN_ROLE')" th:href="@{/courses}" class="btn btn-danger mt-2" >
-                Добавить занятия
-            </a>
+            <button sec:authorize="hasAuthority('ADMIN_ROLE')" id="add-project-btn" type="button"
+                    class="btn btn-default mt-2" data-toggle="modal"
+                    data-target="#add-project-form">
+                <span class="glyphicon glyphicon-plus"></span> Добавить занятие
+            </button>
         </div>
     </form>
 
@@ -54,6 +56,44 @@
                        th:href="@{/schedule/signout/{id}(id=${lesson.id})}">Отменить запись</a>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div id="add-project-form" class="modal fade" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form id="project-form" th:action="@{/saveLesson}" th:object="${lessons}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="timeSelect">Время</label>
+                            <select class="form-select form-control w-50 mx-auto " id="timeSelect" name="timeSelect">
+                                <option value="09:00" >09:00</option>
+                                <option value="11:00" >11:00</option>
+                                <option value="13:00" >13:00</option>
+                                <option value="15:00" >15:00</option>
+                                <option value="17:00" >17:00</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn-close" class="btn btn-default"
+                                data-dismiss="modal">Закрыть</button>
+                        <button type="submit" id="btn-save" class="btn btn-primary">
+                            Добавить занятие</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
