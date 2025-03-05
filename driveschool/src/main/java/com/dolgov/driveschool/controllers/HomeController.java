@@ -15,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -63,6 +64,12 @@ public class HomeController {
     public String getSchedule(){
         LocalDate today = lessonService.getToday();
         return "redirect:/schedule/1/"+today.toString();
+    }
+
+    @PostMapping("/saveLesson")
+    public String addApplication(@RequestParam String timeSelect, @ModelAttribute Lesson lesson){
+
+        return "redirect:/schedule";
     }
 
     @GetMapping("/getSchedule")
