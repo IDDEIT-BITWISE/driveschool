@@ -26,8 +26,8 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
     @Query("SELECT p from Lesson p WHERE p.instructor.id = :instructor_id AND p.date = :date AND p.time = :time")
     Lesson findLessonByDateAndInstructorIdAndTime(@Param("instructor_id") Long instructorId,
-                                                        @Param("date") LocalDate date,
-                                                        @Param("time") LocalTime time);
+                                                  @Param("date") LocalDate date,
+                                                  @Param("time") LocalTime time);
 
     @Query("SELECT p from Lesson p WHERE p.instructor.id = :instructor_id AND p.date = :date")
     List<Lesson> findAllByDateAndInstructorId(@Param("instructor_id") Long instructorId, @Param("date") LocalDate date);
