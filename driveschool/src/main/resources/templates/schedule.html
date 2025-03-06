@@ -24,7 +24,7 @@
                 <label for="instructor" class="mt-2">Выберите инструктора</label>
                 <select class="form-select form-control w-50 mx-auto " id="instructor" name="instructorId">
                     <option th:each="instructor : ${instructors}" th:value="${instructor.id}"
-                            th:text="${instructor.secondName}"
+                            th:text="${instructor.secondName + ' ' + instructor.firstName?.substring(0, 1) + '. ' + instructor.thirdName?.substring(0, 1) + '.'}"
                             th:selected="${currentInstructor.id==instructor.id}"></option>
                 </select>
                 <button type="submit" class="btn btn-primary mt-2">Показать занятия</button>
@@ -42,7 +42,7 @@
                 <div class="schedule-column" th:each="lesson : ${lessons}">
                     <div class="task">
                         <strong th:text="${lesson.time}"></strong>
-                        <p th:text="${lesson.instructor.secondName}"></p>
+                        <p th:text="${lesson.instructor.secondName + ' ' + lesson.instructor.firstName?.substring(0, 1) + '. ' + lesson.instructor.thirdName?.substring(0, 1) + '.'}"></p>
                         <p th:if="${lesson.user}">Занято</p>
                         <a sec:authorize="hasAuthority('STUDENT_ROLE')"
                            th:if="${(lesson.user==null)}"
