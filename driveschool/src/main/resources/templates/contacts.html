@@ -3,12 +3,12 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Автошкола Драйв</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="stylesheet" th:href="@{/styles/main.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автошкола Драйв</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
 </head>
 <body>
 
@@ -16,74 +16,74 @@
 
 <!-- Основной контент -->
 <main class="py-5">
-  <div class="container">
-    <h1 class="text-center mb-5">Контакты автошколы "Драйв"</h1>
+    <div class="container">
+        <h1 class="text-center mb-5">Контакты автошколы "Драйв"</h1>
 
-    <div class="row g-5">
-      <!-- Контактная информация -->
-      <div class="col-lg-6">
-        <div class="contact-card card h-100 p-4">
-          <h2 class="mb-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Наш адрес</h2>
-          <p class="fs-5">
-            г. Иркутск, ул. Ленина, 123<br>
-            <small class="text-muted">Вход со стороны парковки</small>
-          </p>
+        <div class="row g-5">
+            <!-- Контактная информация -->
+            <div class="col-lg-6">
+                <div class="contact-card card h-100 p-4">
+                    <h2 class="mb-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Наш адрес</h2>
+                    <p class="fs-5">
+                        г. Иркутск, ул. Ленина, 123<br>
+                        <small class="text-muted">Вход со стороны парковки</small>
+                    </p>
 
-          <h3 class="mt-4"><i class="fas fa-clock text-warning me-2"></i>График работы</h3>
-          <ul class="list-unstyled fs-5">
-            <li>Пн-Пт: 09:00 - 20:00</li>
-            <li>Сб: 10:00 - 18:00</li>
-            <li>Вс: выходной</li>
-          </ul>
+                    <h3 class="mt-4"><i class="fas fa-clock text-warning me-2"></i>График работы</h3>
+                    <ul class="list-unstyled fs-5">
+                        <li>Пн-Пт: 09:00 - 20:00</li>
+                        <li>Сб: 10:00 - 18:00</li>
+                        <li>Вс: выходной</li>
+                    </ul>
 
-          <h3 class="mt-4"><i class="fas fa-phone-volume text-success me-2"></i>Телефоны</h3>
-          <ul class="list-unstyled fs-5">
-            <li><a href="tel:+73952123456" class="text-decoration-none">+7 (3952) 12-34-56</a></li>
-            <li><a href="tel:+79021987654" class="text-decoration-none">+7 (902) 198-76-54</a></li>
-          </ul>
+                    <h3 class="mt-4"><i class="fas fa-phone-volume text-success me-2"></i>Телефоны</h3>
+                    <ul class="list-unstyled fs-5">
+                        <li><a href="tel:+73952123456" class="text-decoration-none">+7 (3952) 12-34-56</a></li>
+                        <li><a href="tel:+79021987654" class="text-decoration-none">+7 (902) 198-76-54</a></li>
+                    </ul>
 
-          <h3 class="mt-4"><i class="fas fa-share-nodes text-info me-2"></i>Соцсети</h3>
-          <div class="d-flex gap-3">
-            <a href="#" class="text-dark"><i class="fab fa-vk social-icon"></i></a>
-            <a href="#" class="text-dark"><i class="fab fa-telegram social-icon"></i></a>
-            <a href="#" class="text-dark"><i class="fab fa-whatsapp social-icon"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Карта и форма -->
-      <div class="col-lg-6">
-        <div class="map-container mb-4">
-          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Acdd58e4d3b1a4c4d5d5c5c5c5c5c5c5c5&amp;source=constructor"
-                  width="100%"
-                  height="100%"
-                  frameborder="0">
-          </iframe>
-        </div>
-
-        <div class="contact-card card p-4">
-          <h2 class="mb-4"><i class="fas fa-envelope text-danger me-2"></i>Форма обратной связи</h2>
-          <form>
-            <div class="mb-3">
-              <label class="form-label">Ваше имя</label>
-              <input type="text" class="form-control" required>
+                    <h3 class="mt-4"><i class="fas fa-share-nodes text-info me-2"></i>Соцсети</h3>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-dark"><i class="fab fa-vk social-icon"></i></a>
+                        <a href="#" class="text-dark"><i class="fab fa-telegram social-icon"></i></a>
+                        <a href="#" class="text-dark"><i class="fab fa-whatsapp social-icon"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Ваш телефон</label>
-              <input type="tel" class="form-control" required>
+
+            <!-- Карта и форма -->
+            <div class="col-lg-6">
+                <div class="map-container mb-4">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Acdd58e4d3b1a4c4d5d5c5c5c5c5c5c5c5&amp;source=constructor"
+                            width="100%"
+                            height="100%"
+                            frameborder="0">
+                    </iframe>
+                </div>
+
+                <div class="contact-card card p-4">
+                    <h2 class="mb-4"><i class="fas fa-envelope text-danger me-2"></i>Форма обратной связи</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Ваше имя</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ваш телефон</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Сообщение</label>
+                            <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Отправить
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Сообщение</label>
-              <textarea class="form-control" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">
-              <i class="fas fa-paper-plane me-2"></i>Отправить
-            </button>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
 </main>
 
 <div th:replace="~{footer :: footer}"></div>

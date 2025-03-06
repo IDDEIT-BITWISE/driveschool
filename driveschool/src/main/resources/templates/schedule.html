@@ -19,10 +19,13 @@
         <form id="lessons_form" th:action="@{/getSchedule}">
             <div class="text-center mb-4 form-group">
                 <label for="datePicker">Выберите дату:</label>
-                <input type="date" name="datePicker" id="datePicker" th:value="${datePicker}" class="form-control w-50 mx-auto" />
+                <input type="date" name="datePicker" id="datePicker" th:value="${datePicker}"
+                       class="form-control w-50 mx-auto"/>
                 <label for="instructor" class="mt-2">Выберите инструктора</label>
                 <select class="form-select form-control w-50 mx-auto " id="instructor" name="instructorId">
-                    <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.secondName}" th:selected="${currentInstructor.id==instructor.id}"></option>
+                    <option th:each="instructor : ${instructors}" th:value="${instructor.id}"
+                            th:text="${instructor.secondName}"
+                            th:selected="${currentInstructor.id==instructor.id}"></option>
                 </select>
                 <button type="submit" class="btn btn-primary mt-2">Показать занятия</button>
                 <button sec:authorize="hasAuthority('ADMIN_ROLE')" id="add-project-btn" type="button"
@@ -34,8 +37,6 @@
         </form>
 
 
-
-
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="schedule-column" th:each="lesson : ${lessons}">
@@ -44,9 +45,9 @@
                         <p th:text="${lesson.instructor.secondName}"></p>
                         <p th:if="${lesson.user}">Занято</p>
                         <a sec:authorize="hasAuthority('STUDENT_ROLE')"
-                                th:if="${(lesson.user==null)}"
-                                class="btn btn-book"
-                                th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
+                           th:if="${(lesson.user==null)}"
+                           class="btn btn-book"
+                           th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
                         <a sec:authorize="hasAuthority('ADMIN_ROLE')"
                            th:if="${(lesson.user==null)}"
                            class="btn btn-danger"
@@ -65,7 +66,7 @@
         <div id="add-project-form" class="modal fade" tabindex="-1"
              role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
-                <form id="project-form" th:action="@{${URI}+'/saveLesson'}" >
+                <form id="project-form" th:action="@{${URI}+'/saveLesson'}">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"
@@ -76,21 +77,24 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="timeSelect">Время</label>
-                                <select class="form-select form-control w-50 mx-auto " id="timeSelect" name="timeSelect">
-                                    <option value="09:00" >09:00</option>
-                                    <option value="11:00" >11:00</option>
-                                    <option value="13:00" >13:00</option>
-                                    <option value="15:00" >15:00</option>
-                                    <option value="17:00" >17:00</option>
+                                <select class="form-select form-control w-50 mx-auto " id="timeSelect"
+                                        name="timeSelect">
+                                    <option value="09:00">09:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="17:00">17:00</option>
                                 </select>
                             </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="btn-close" class="btn btn-default"
-                                    data-dismiss="modal">Закрыть</button>
+                                    data-dismiss="modal">Закрыть
+                            </button>
                             <button type="submit" id="btn-save" class="btn btn-primary">
-                                Добавить занятие</button>
+                                Добавить занятие
+                            </button>
                         </div>
                     </div>
                 </form>
