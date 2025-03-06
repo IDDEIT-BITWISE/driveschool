@@ -42,7 +42,9 @@
                 <div class="schedule-column" th:each="lesson : ${lessons}">
                     <div class="task">
                         <strong th:text="${lesson.time}"></strong>
-                        <p th:text="${lesson.instructor.secondName + ' ' + lesson.instructor.firstName?.substring(0, 1) + '. ' + lesson.instructor.thirdName?.substring(0, 1) + '.'}"></p>
+                        <p>
+                            Инструктор: <span th:text="${lesson.instructor.secondName + ' ' + lesson.instructor.firstName?.substring(0, 1) + '. ' + lesson.instructor.thirdName?.substring(0, 1) + '.'}" > </span>
+                        </p>
                         <p th:if="${lesson.user}">Занято</p>
                         <p th:if="${lesson.user}" sec:authorize="hasAuthority('ADMIN_ROLE')">
                             Курсант: <span th:text="${lesson.user.username}"></span>
