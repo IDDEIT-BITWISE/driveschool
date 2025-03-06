@@ -44,6 +44,9 @@
                         <strong th:text="${lesson.time}"></strong>
                         <p th:text="${lesson.instructor.secondName + ' ' + lesson.instructor.firstName?.substring(0, 1) + '. ' + lesson.instructor.thirdName?.substring(0, 1) + '.'}"></p>
                         <p th:if="${lesson.user}">Занято</p>
+                        <p th:if="${lesson.user}" sec:authorize="hasAuthority('ADMIN_ROLE')">
+                            Курсант: <span th:text="${lesson.user.username}"></span>
+                        </p>
                         <a sec:authorize="hasAuthority('STUDENT_ROLE')"
                            th:if="${(lesson.user==null)}"
                            class="btn btn-book"
@@ -86,7 +89,6 @@
                                     <option value="17:00">17:00</option>
                                 </select>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="btn-close" class="btn btn-default"
