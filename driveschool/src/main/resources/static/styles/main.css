@@ -1,6 +1,4 @@
-body {
-    font-family: 'Arial', sans-serif;
-}
+
 
 /*.schedule-wrapper{
 }*/
@@ -53,10 +51,6 @@ body {
 
 .card:hover {
     transform: scale(1.05);
-}
-
-footer {
-    position: relative;
 }
 
 .container-login {
@@ -161,5 +155,22 @@ h2.text {
     }
     .social-icon:hover {
         transform: scale(1.2);
+    }
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Занимает всю высоту экрана */
+    }
+
+    main {
+      flex: 1; /* Растягивает основной контент */
+    }
+
+    footer {
+      margin-top: auto; /* Автоматический отступ сверху */
     }
 
