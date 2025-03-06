@@ -1,5 +1,6 @@
 package com.dolgov.driveschool.services;
 
+import com.dolgov.driveschool.models.Instructor;
 import com.dolgov.driveschool.models.Lesson;
 import com.dolgov.driveschool.models.User;
 import com.dolgov.driveschool.repositories.LessonRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
@@ -91,6 +93,19 @@ public class LessonService {
     public void deleteLesson(Lesson lesson) {
         lessonRepository.delete(lesson);
 
+    }
+
+    public void saveLesson(Lesson lesson) {
+        lessonRepository.save(lesson);
+    }
+
+    public boolean isLessonTimeExist(Long instructorId, LocalDate date, LocalTime time){
+        if(lessonRepository.findLessonByDateAndInstructorIdAndTime(instructorId, date, time)==null){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
 

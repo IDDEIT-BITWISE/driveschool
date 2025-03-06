@@ -36,7 +36,6 @@
 
 
 
-
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="schedule-column" th:each="lesson : ${lessons}">
@@ -44,7 +43,8 @@
                     <strong th:text="${lesson.time}"></strong>
                     <p th:text="${lesson.instructor.secondName}"></p>
                     <p th:if="${lesson.user}">Занято</p>
-                    <a th:if="${(lesson.user==null)}"
+                    <a sec:authorize="hasAuthority('STUDENT_ROLE')"
+                            th:if="${(lesson.user==null)}"
                             class="btn btn-book"
                             th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
                     <a sec:authorize="hasAuthority('ADMIN_ROLE')"
@@ -65,7 +65,7 @@
     <div id="add-project-form" class="modal fade" tabindex="-1"
          role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form id="project-form" th:action="@{/saveLesson}" th:object="${lessons}" method="post">
+            <form id="project-form" th:action="@{${URI}+'/saveLesson'}" >
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"

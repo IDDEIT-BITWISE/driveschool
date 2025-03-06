@@ -66,11 +66,7 @@ public class HomeController {
         return "redirect:/schedule/1/"+today.toString();
     }
 
-    @PostMapping("/saveLesson")
-    public String addApplication(@RequestParam String timeSelect, @ModelAttribute Lesson lesson){
 
-        return "redirect:/schedule";
-    }
 
     @GetMapping("/getSchedule")
     public String getLessons(
@@ -84,9 +80,28 @@ public class HomeController {
         return resRedir;
     }
 
+    @GetMapping("/schedule/{instructorId}/{date}/saveLesson")
+    public String saveLesson(@PathVariable("instructorId") Long instructorId,
+                             @PathVariable("date") LocalDate date,
+                             @RequestParam(required = true) String timeSelect) {
+        LocalTime lessonTime = LocalTime.parse(timeSelect);
+        Lesson lesson = new Lesson();
+        lesson.setTime(lessonTime);
+        lesson.setInstructor(instructorService.getInstructorById(instructorId));
+        lesson.setDate(date);
+        if(!lessonService.isLessonTimeExist(instructorId, date, lessonTime)){
+            lessonService.saveLesson(lesson);
+        }
+
+        return "redirect:/schedule/" + instructorId + "/" + date;
+
+    }
+
     @GetMapping("/schedule/{instructorId}/{date}")
     public String getLessonsToday(@PathVariable("instructorId") Long instructorId,@PathVariable("date") LocalDate date, Model model, Authentication authentication) {
         Instructor currentInstructor = instructorService.getInstructorById(instructorId);
+        String URI = "/schedule/"+String.valueOf(instructorId)+"/"+String.valueOf(date);
+        model.addAttribute("URI", URI);
 
         List<Lesson> lessons = lessonService.getAllByInstructorAndDate(instructorId, date);
         model.addAttribute("lessons", lessons);
