@@ -47,10 +47,12 @@
                         </p>
                         <p th:if="${lesson.user}">Занято</p>
                         <p th:if="${lesson.user}" sec:authorize="hasAuthority('ADMIN_ROLE')">
-                            Курсант: <span th:text="${lesson.user.username}"></span>
+                            Студент: <span th:text="${lesson.user.username}"></span>
                         </p>
                         <a sec:authorize="hasAuthority('STUDENT_ROLE')"
-                           th:if="${(lesson.user==null)}"
+                           th:if="${(lesson.user == null) and
+                            (lesson.date.isAfter(T(java.time.LocalDate).now()) or
+                             (lesson.date.isEqual(T(java.time.LocalDate).now()) and T(java.time.LocalTime).now().isBefore(lesson.time)))}"
                            class="btn btn-book"
                            th:href="@{/schedule/signup/{id}(id=${lesson.id})}">Записаться</a>
                         <a sec:authorize="hasAuthority('ADMIN_ROLE')"
