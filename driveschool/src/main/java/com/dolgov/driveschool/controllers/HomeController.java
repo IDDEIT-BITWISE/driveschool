@@ -99,20 +99,25 @@ public class HomeController {
 
     @GetMapping("/schedule/{instructorId}/{date}")
     public String getLessonsToday(@PathVariable("instructorId") Long instructorId,@PathVariable("date") LocalDate date, Model model, Authentication authentication) {
-        Instructor currentInstructor = instructorService.getInstructorById(instructorId);
-        String URI = "/schedule/"+String.valueOf(instructorId)+"/"+String.valueOf(date);
-        model.addAttribute("URI", URI);
+        if (LocalDate.now().isAfter(date)) {
+            return "redirect:/schedule";
+        }
+        else {
+            Instructor currentInstructor = instructorService.getInstructorById(instructorId);
+            String URI = "/schedule/"+String.valueOf(instructorId)+"/"+String.valueOf(date);
+            model.addAttribute("URI", URI);
 
-        List<Lesson> lessons = lessonService.getAllByInstructorAndDate(instructorId, date);
-        model.addAttribute("lessons", lessons);
-        model.addAttribute("lesson", new Lesson());
+            List<Lesson> lessons = lessonService.getAllByInstructorAndDate(instructorId, date);
+            model.addAttribute("lessons", lessons);
+            model.addAttribute("lesson", new Lesson());
 
-        model.addAttribute("instructors", instructorService.getAll());
-        model.addAttribute("instructor", new Instructor());
-        model.addAttribute("currentInstructor", currentInstructor);
-        model.addAttribute("datePicker",date);
-        System.out.println(authentication.getAuthorities());
-        return "schedule";
+            model.addAttribute("instructors", instructorService.getAll());
+            model.addAttribute("instructor", new Instructor());
+            model.addAttribute("currentInstructor", currentInstructor);
+            model.addAttribute("datePicker",date);
+            System.out.println(authentication.getAuthorities());
+            return "schedule";
+            }
     }
 
     @GetMapping("/schedule/signup/{id}")
