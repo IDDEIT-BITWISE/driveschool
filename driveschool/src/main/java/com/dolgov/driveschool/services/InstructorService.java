@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class InstructorService {
 
-    private final InstructorRepository instructorRepository ;
+    private final InstructorRepository instructorRepository;
 
     @Autowired
     public InstructorService(InstructorRepository instructorRepository) {
@@ -21,7 +21,8 @@ public class InstructorService {
     public List<Instructor> getAll() {
         return instructorRepository.findAll();
     }
-    public Instructor getInstructorById(Long id){
+
+    public Instructor getInstructorById(Long id) {
         return instructorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("instructor not found"));
     }

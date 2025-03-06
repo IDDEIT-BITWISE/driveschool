@@ -21,22 +21,21 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user =  userRepository.findByUsername(username)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("user not found"));
         return user;
     }
 
-    public User getUserByName(String name){
+    public User getUserByName(String name) {
         return userRepository.findByUsername(name)
                 .orElseThrow(() -> new RuntimeException("user not found"));
     }
 
     public void save(User user) {
         user.setUserRole(UserRole.STUDENT_ROLE);
-        user.setPassword("{noop}"+user.getPassword());
+        user.setPassword("{noop}" + user.getPassword());
         userRepository.save(user);
     }
-
 
 
 }

@@ -40,23 +40,23 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String index(){
+    public String index() {
 
         return "home";
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @GetMapping("/courses")
-    public String courses(){
+    public String courses() {
         return "courses";
     }
 
     @GetMapping("/contacts")
-    public String contacts(){
+    public String contacts() {
         return "contacts";
     }
 

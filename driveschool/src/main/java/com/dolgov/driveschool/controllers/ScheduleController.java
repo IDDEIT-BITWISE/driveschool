@@ -31,11 +31,10 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedule")
-    public String getSchedule(){
+    public String getSchedule() {
         LocalDate today = lessonService.getToday();
-        return "redirect:/schedule/1/"+today.toString();
+        return "redirect:/schedule/1/" + today.toString();
     }
-
 
 
     @GetMapping("/getSchedule")
@@ -59,7 +58,7 @@ public class ScheduleController {
         lesson.setTime(lessonTime);
         lesson.setInstructor(instructorService.getInstructorById(instructorId));
         lesson.setDate(date);
-        if(!lessonService.isLessonTimeExist(instructorId, date, lessonTime)){
+        if (!lessonService.isLessonTimeExist(instructorId, date, lessonTime)) {
             lessonService.saveLesson(lesson);
         }
 
@@ -71,10 +70,9 @@ public class ScheduleController {
     public String getLessonsToday(@PathVariable("instructorId") Long instructorId, @PathVariable("date") LocalDate date, Model model, Authentication authentication) {
         if (LocalDate.now().isAfter(date)) {
             return "redirect:/schedule";
-        }
-        else {
+        } else {
             Instructor currentInstructor = instructorService.getInstructorById(instructorId);
-            String URI = "/schedule/"+String.valueOf(instructorId)+"/"+String.valueOf(date);
+            String URI = "/schedule/" + String.valueOf(instructorId) + "/" + String.valueOf(date);
             model.addAttribute("URI", URI);
 
             List<Lesson> lessons = lessonService.getAllByInstructorAndDate(instructorId, date);
@@ -84,7 +82,7 @@ public class ScheduleController {
             model.addAttribute("instructors", instructorService.getAll());
             model.addAttribute("instructor", new Instructor());
             model.addAttribute("currentInstructor", currentInstructor);
-            model.addAttribute("datePicker",date);
+            model.addAttribute("datePicker", date);
             System.out.println(authentication.getAuthorities());
             return "schedule";
         }
@@ -133,7 +131,7 @@ public class ScheduleController {
         lessonService.deleteLesson(lesson);
         Long instructorId = lesson.getInstructor().getId();
         LocalDate date = lesson.getDate();
-        return "redirect:/schedule/"+instructorId+"/"+date;
+        return "redirect:/schedule/" + instructorId + "/" + date;
     }
 
 }

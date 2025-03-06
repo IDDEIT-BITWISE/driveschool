@@ -99,15 +99,13 @@ public class LessonService {
         lessonRepository.save(lesson);
     }
 
-    public boolean isLessonTimeExist(Long instructorId, LocalDate date, LocalTime time){
-        if(lessonRepository.findLessonByDateAndInstructorIdAndTime(instructorId, date, time)==null){
+    public boolean isLessonTimeExist(Long instructorId, LocalDate date, LocalTime time) {
+        if (lessonRepository.findLessonByDateAndInstructorIdAndTime(instructorId, date, time) == null) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
-
 
 
 }
