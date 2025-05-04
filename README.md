@@ -1,2 +1,1 @@
-# drive_school
-курсач спринг (калым)
+Spring + Thymeleaf + PostgreSQL
